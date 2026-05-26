@@ -1,0 +1,35 @@
+const InstagramIcon = () => (
+  <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+    <rect x="2" y="2" width="20" height="20" rx="5" />
+    <circle cx="12" cy="12" r="4" />
+    <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none" />
+  </svg>
+)
+
+export default function Footer() {
+  return (
+    <footer className="bg-ink border-t border-gray-light/10 px-8 md:px-[72px] py-10 flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
+      <div className="font-serif text-xl font-light text-cream">
+        <span className="text-red">✦</span> Sellos Ana
+      </div>
+
+      <div className="text-[0.72rem] tracking-[0.1em] text-gray-mid">
+        © {new Date().getFullYear()} Sellos Ana · Mendoza, Argentina · Sellos · Regalos · Tarjetas
+      </div>
+
+      <a
+        href="https://www.instagram.com/sellos_ana/"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="
+          w-9 h-9 border border-gray-light/20 flex items-center justify-center
+          text-gray-mid hover:border-red hover:text-red
+          transition-all duration-300 no-underline
+        "
+        aria-label="Instagram"
+      >
+        <InstagramIcon />
+      </a>
+    </footer>
+  )
+}
