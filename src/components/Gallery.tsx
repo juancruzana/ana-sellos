@@ -1,12 +1,12 @@
 import { useRef, useEffect, useCallback } from 'react'
-import SectionLabel from './SectionLabel'
+import SectionLabel from './shared/SectionLabel'
 import {
   GalleryStampFlorist,
   GalleryStampRosalia,
   GalleryStampDulce,
   GalleryStampBienvenida,
   GalleryStampOrganic,
-} from './StampIllustrations'
+} from './shared/StampIllustrations'
 
 type Tile =
   | { type: 'svg';   className: string; innerClass: string; stamp: React.ReactNode }

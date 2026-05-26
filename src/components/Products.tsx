@@ -1,4 +1,4 @@
-import SectionLabel from './SectionLabel'
+import SectionLabel from './shared/SectionLabel'
 
 interface Product {
   number: string

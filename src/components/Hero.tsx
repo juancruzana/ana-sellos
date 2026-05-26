@@ -1,4 +1,4 @@
-import { StampMain, StampFlower, StampCircle } from './StampIllustrations'
+import { StampMain, StampFlower, StampCircle } from './shared/StampIllustrations'
 
 export default function Hero() {
   return (

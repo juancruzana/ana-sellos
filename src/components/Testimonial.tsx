@@ -1,4 +1,4 @@
-import SectionLabel from './SectionLabel'
+import SectionLabel from './shared/SectionLabel'
 
 export default function Testimonial() {
   return (

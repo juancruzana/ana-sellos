@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import SectionLabel from './SectionLabel'
+import SectionLabel from './shared/SectionLabel'
 import { products, categories } from '../data/catalog'
 
 const WHATSAPP = 'https://api.whatsapp.com/send/?phone=2613062585&text=Hola!%20Vi%20el%20cat%C3%A1logo%20y%20quiero%20consultar%20sobre%20un%20producto.&type=phone_number'
