@@ -1,11 +1,15 @@
 import InstagramIcon from './shared/InstagramIcon'
+import logo from '../img/logo.png'
 
 export default function Footer() {
   return (
     <footer className="bg-ink border-t border-gray-light/10 px-8 md:px-[72px] py-10 flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
-      <div className="font-serif text-xl font-light text-cream">
-        <span className="text-red">✦</span> Sellos Ana
-      </div>
+      <img
+        src={logo}
+        alt="Sellos Ana"
+        className="h-9 w-auto"
+        style={{ filter: 'brightness(0) invert(1)' }}
+      />
 
       <div className="text-[0.72rem] tracking-[0.1em] text-gray-mid">
         © {new Date().getFullYear()} Sellos Ana · Mendoza, Argentina · Sellos · Regalos · Tarjetas

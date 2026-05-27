@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import SectionLabel from './shared/SectionLabel'
+import QuoteModal from './QuoteModal'
 import { products, categories } from '../data/catalog'
 
 const WHATSAPP = 'https://api.whatsapp.com/send/?phone=2613062585&text=Hola!%20Vi%20el%20cat%C3%A1logo%20y%20quiero%20consultar%20sobre%20un%20producto.&type=phone_number'
@@ -7,10 +8,16 @@ const WHATSAPP = 'https://api.whatsapp.com/send/?phone=2613062585&text=Hola!%20V
 const ALL = 'Todos'
 
 export default function Catalog() {
-  const [active, setActive]   = useState(ALL)
-  const [lightbox, setLightbox] = useState<string | null>(null)
+  const [active, setActive]             = useState(ALL)
+  const [search, setSearch]             = useState('')
+  const [lightbox, setLightbox]         = useState<string | null>(null)
+  const [quoteProduct, setQuoteProduct] = useState<string | null>(null)
 
-  const filtered = active === ALL ? products : products.filter(p => p.category === active)
+  const filtered = products.filter(p => {
+    const matchesCategory = active === ALL || p.category === active
+    const matchesSearch   = search === '' || p.name.toLowerCase().includes(search.toLowerCase())
+    return matchesCategory && matchesSearch
+  })
 
   return (
     <section id="catalogo" className="bg-cream py-24">
@@ -22,43 +29,78 @@ export default function Catalog() {
           Todos nuestros <em className="italic text-red">productos</em>
         </h2>
         <p className="mt-4 text-[0.88rem] font-light text-gray-mid max-w-[480px] mx-auto leading-[1.8]">
-          Seleccioná una categoría para filtrar o consultanos por cualquier artículo.
+          Buscá por nombre o filtrá por categoría.
         </p>
       </div>
 
-      {/* Category filter pills */}
-      <div className="reveal flex flex-wrap gap-2 justify-center mb-12 px-8 md:px-[72px]">
-        {[ALL, ...categories].map(cat => (
-          <button
-            key={cat}
-            onClick={() => setActive(cat)}
-            className={`
-              text-[0.68rem] tracking-[0.18em] uppercase px-5 py-2
-              border transition-all duration-200 cursor-pointer
-              ${active === cat
-                ? 'bg-red border-red text-parchment'
-                : 'border-gray-light text-gray-dark hover:border-red hover:text-red bg-transparent'
-              }
-            `}
+      {/* Search + Category filter */}
+      <div className="reveal flex flex-col sm:flex-row gap-3 mb-10 px-8 md:px-[72px] max-w-[1400px] mx-auto">
+        {/* Search */}
+        <div className="relative flex-1">
+          <svg
+            className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-mid pointer-events-none"
+            width="14" height="14" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
           >
-            {cat}
-          </button>
-        ))}
+            <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+          </svg>
+          <input
+            type="text"
+            value={search}
+            onChange={e => setSearch(e.target.value)}
+            placeholder="Buscar producto..."
+            className="
+              w-full pl-9 pr-4 py-2.5
+              bg-parchment border border-gray-light
+              text-[0.82rem] text-ink placeholder:text-gray-mid/60
+              focus:outline-none focus:border-red
+              transition-colors duration-200
+            "
+          />
+        </div>
+
+        {/* Category dropdown */}
+        <div className="relative sm:w-64">
+          <select
+            value={active}
+            onChange={e => setActive(e.target.value)}
+            className="
+              w-full appearance-none
+              bg-parchment border border-gray-light
+              px-4 pr-9 py-2.5
+              text-[0.82rem] text-ink
+              focus:outline-none focus:border-red
+              transition-colors duration-200 cursor-pointer
+            "
+          >
+            <option value={ALL}>Todas las categorías</option>
+            {categories.map(cat => (
+              <option key={cat} value={cat}>{cat}</option>
+            ))}
+          </select>
+          <svg
+            className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-mid pointer-events-none"
+            width="12" height="12" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"
+          >
+            <polyline points="6 9 12 15 18 9"/>
+          </svg>
+        </div>
       </div>
 
       {/* Count label */}
       <p className="text-center text-[0.72rem] tracking-[0.14em] uppercase text-gray-mid mb-8">
         {filtered.length} {filtered.length === 1 ? 'producto' : 'productos'}
         {active !== ALL && <span> · {active}</span>}
+        {search && <span> · "{search}"</span>}
       </p>
 
       {/* Grid */}
       <div className="px-8 md:px-[72px] grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3 max-w-[1400px] mx-auto">
-        {filtered.map((product, i) => (
+        {filtered.map((product) => (
           <div
-            key={`${product.name}-${i}`}
-            className="reveal group bg-parchment border border-gray-light/60 overflow-hidden"
-            style={{ transitionDelay: `${(i % 10) * 40}ms` }}
+            key={product.name}
+            className="group bg-parchment border border-gray-light/60 overflow-hidden"
           >
             {/* Image */}
             <button
@@ -92,18 +134,16 @@ export default function Catalog() {
               <span className="text-[0.6rem] tracking-[0.12em] uppercase text-gray-mid block mb-3">
                 {product.category}
               </span>
-              <a
-                href={WHATSAPP}
-                target="_blank"
-                rel="noopener noreferrer"
+              <button
+                onClick={() => setQuoteProduct(product.name)}
                 className="
-                  inline-block text-[0.62rem] tracking-[0.16em] uppercase
+                  text-[0.62rem] tracking-[0.16em] uppercase
                   text-red hover:text-red-light transition-colors duration-200
-                  no-underline
+                  cursor-pointer
                 "
               >
-                Consultar →
-              </a>
+                Cotizar →
+              </button>
             </div>
           </div>
         ))}
@@ -129,6 +169,14 @@ export default function Catalog() {
           Consultar catálogo completo
         </a>
       </div>
+
+      {/* Quote modal */}
+      {quoteProduct && (
+        <QuoteModal
+          productName={quoteProduct}
+          onClose={() => setQuoteProduct(null)}
+        />
+      )}
 
       {/* Lightbox */}
       {lightbox && (

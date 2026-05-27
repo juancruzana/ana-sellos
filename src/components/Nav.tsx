@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import logo from '../img/logo.png'
 
 const links = [
   { label: 'Productos', href: '#productos' },
@@ -30,11 +31,8 @@ export default function Nav() {
       `}
     >
       {/* Logo */}
-      <a
-        href="#inicio"
-        className="font-serif text-2xl font-normal tracking-wide text-ink no-underline"
-      >
-        <span className="text-red">✦</span> Sellos Ana
+      <a href="#inicio" className="no-underline flex items-center">
+        <img src={logo} alt="Sellos Ana" className="h-10 w-auto" />
       </a>
 
       {/* Links */}
