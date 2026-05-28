@@ -40,8 +40,7 @@ export default function Hero() {
           style={{ animation: 'fadeUp 0.8s 0.65s both' }}
         >
           <a
-            href="https://www.instagram.com/sellos_ana/"
-            target="_blank"
+            href="#catalogo"
             rel="noopener noreferrer"
             className="
               bg-red hover:bg-red-light text-parchment

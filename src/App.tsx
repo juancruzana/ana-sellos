@@ -6,7 +6,6 @@ import About       from './components/About'
 import Products    from './components/Products'
 import Catalog     from './components/Catalog'
 import Process     from './components/Process'
-import Gallery     from './components/Gallery'
 import Testimonial from './components/Testimonial'
 import Info        from './components/Info'
 import CtaBand     from './components/CtaBand'
@@ -39,7 +38,6 @@ export default function App() {
         <Products />
         <Catalog />
         <Process />
-        <Gallery />
         <Testimonial />
         <Info />
         <CtaBand />

@@ -29,7 +29,11 @@ export default function Info() {
       <div className="reveal md:px-16">
         <div className="text-[0.65rem] tracking-[0.28em] uppercase text-red mb-5">Ubicación</div>
         <h3 className="font-serif text-[1.4rem] font-light text-cream mb-4">Mendoza</h3>
-        <div className="text-[0.85rem] text-gray-mid leading-8">Argentina</div>
+        <div className="text-[0.85rem] text-gray-mid leading-7">
+          9 de Julio 1157<br />
+          Ciudad · Mendoza<br />
+          Argentina
+        </div>
         <a
           href="https://www.instagram.com/sellos_ana/"
           target="_blank"
@@ -50,9 +54,15 @@ export default function Info() {
       <div className="reveal md:px-16">
         <div className="text-[0.65rem] tracking-[0.28em] uppercase text-red mb-5">Pedidos</div>
         <h3 className="font-serif text-[1.4rem] font-light text-cream mb-4">Contacto</h3>
-        <p className="text-[0.85rem] text-gray-mid leading-[1.8] mb-5">
-          Escribinos por Instagram para consultar disponibilidad, precios y personalización.
-        </p>
+        <div className="text-[0.85rem] text-gray-mid leading-8 mb-5">
+          <div>Tel: 0261 4203982 / 4203663</div>
+          <a
+            href="mailto:ana@anaregalos.com.ar"
+            className="text-gray-mid hover:text-red transition-colors duration-300 no-underline"
+          >
+            ana@anaregalos.com.ar
+          </a>
+        </div>
         <a
           href="https://api.whatsapp.com/send/?phone=2613062585&text&type=phone_number&app_absent=0&utm_source=ig"
           target="_blank"

@@ -1,4 +1,5 @@
 import InstagramIcon from './shared/InstagramIcon'
+import WhatsAppIcon from './shared/WhatsAppIcon'
 import logo from '../img/logo.png'
 
 export default function Footer() {
@@ -15,19 +16,34 @@ export default function Footer() {
         © {new Date().getFullYear()} Sellos Ana · Mendoza, Argentina · Sellos · Regalos · Tarjetas
       </div>
 
-      <a
-        href="https://www.instagram.com/sellos_ana/"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="
-          w-9 h-9 border border-gray-light/20 flex items-center justify-center
-          text-gray-mid hover:border-red hover:text-red
-          transition-all duration-300 no-underline
-        "
-        aria-label="Instagram"
-      >
-        <InstagramIcon size={14} />
-      </a>
+      <div className="flex items-center gap-3">
+        <a
+          href="https://www.instagram.com/sellos_ana/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="
+            w-9 h-9 border border-gray-light/20 flex items-center justify-center
+            text-gray-mid hover:border-red hover:text-red
+            transition-all duration-300 no-underline
+          "
+          aria-label="Instagram"
+        >
+          <InstagramIcon size={14} />
+        </a>
+        <a
+          href="https://api.whatsapp.com/send/?phone=2613062585&text&type=phone_number&app_absent=0"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="
+            w-9 h-9 border border-gray-light/20 flex items-center justify-center
+            text-gray-mid hover:border-red hover:text-red
+            transition-all duration-300 no-underline
+          "
+          aria-label="WhatsApp"
+        >
+          <WhatsAppIcon size={14} />
+        </a>
+      </div>
     </footer>
   )
 }
